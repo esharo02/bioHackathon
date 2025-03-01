@@ -64,6 +64,6 @@ def summarize_study(trial_info):
 # import os
 
 if __name__ == '__main__':
-     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 6000)))
+     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
 
 
