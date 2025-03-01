@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Trials Finder</title>
+    <link rel="stylesheet" href=style.css>
+</head>
+<body>
+<header>
+    <h1>Clinical Trials Finder</h1>
+    <p>Find relevant clinical trials based on age, condition, and location</p>
+</header>
+
+<main>
+    <!-- Search Form Section -->
+    <section id="search-section">
+        <h2>Search for Clinical Trials</h2>
+        <form id="clinical-trial-form">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="0" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label for="condition">Medical Condition:</label>
+                <input type="text" id="condition" name="condition" placeholder="e.g., Diabetes, Cancer, Asthma" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="City, State or ZIP Code" required>
+            </div>
+
+            <div class="form-group">
+                <label for="distance">Distance (miles):</label>
+                <select id="distance" name="distance">
+                    <option value="10">10 miles</option>
+                    <option value="25">25 miles</option>
+                    <option value="50" selected>50 miles</option>
+                    <option value="100">100 miles</option>
+                    <option value="250">250 miles</option>
+                </select>
+            </div>
+
+            <button type="submit" id="search-button">Search Clinical Trials</button>
+        </form>
+    </section>
+
+    <!-- Results Display Section -->
+    <section id="results-section" class="hidden">
+        <h2>Clinical Trials Results</h2>
+
+        <!-- Map Display -->
+        <div id="map-container">
+            <h3>Trial Locations</h3>
+            <div id="map"></div>
+        </div>
+
+        <!-- List of Clinical Trials -->
+        <div id="trials-container">
+            <h3>Available Clinical Trials</h3>
+            <div id="trials-list">
+                <!-- Results will be inserted here dynamically -->
+                <div class="loading-placeholder">Enter search criteria to see results</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent-Friendly Summary Section -->
+    <section id="summary-section" class="hidden">
+        <h2>Simplified Trial Information</h2>
+        <div id="summary-container">
+            <p class="info-text">Select a clinical trial above to see a simplified explanation.</p>
+            <div id="simplified-summary">
+                <!-- AI-generated summary will appear here -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Trial Details Modal -->
+<div id="trial-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modal-trial-title">Trial Details</h2>
+        <div id="modal-trial-details">
+            <!-- Detailed trial information will be inserted here -->
+        </div>
+        <button id="generate-summary-button">Generate Parent-Friendly Summary</button>
+    </div>
+</div>
+
+<footer>
+    <p>Data sourced from clinichealth.gov API. Summaries powered by OpenAI.</p>
+    <p>This tool is for informational purposes only and does not constitute medical advice.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,465 @@
+/* style.css - Main stylesheet for Clinical Trials Finder */
+
+/* === Base Styles === */
+:root {
+    --primary-color: #2c6bed;
+    --primary-dark: #1854c4;
+    --secondary-color: #34c759;
+    --accent-color: #5856d6;
+    --text-color: #333333;
+    --light-text: #666666;
+    --lightest-text: #999999;
+    --background-color: #ffffff;
+    --light-background: #f5f7fa;
+    --border-color: #e1e4e8;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --error-color: #ff3b30;
+    --success-color: #34c759;
+    --warning-color: #ff9500;
+    --radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-background);
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.5em;
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+    margin-top: 1.2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* === Header === */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+header h1 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* === Main Content === */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+section {
+    background-color: var(--background-color);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+}
+
+section h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* === Form Styles === */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--light-background);
+    transition: var(--transition);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(44, 107, 237, 0.2);
+}
+
+button[type="submit"], #generate-summary-button, .view-details-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+button[type="submit"]:hover, #generate-summary-button:hover, .view-details-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+button:disabled {
+    background-color: var(--lightest-text);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#search-button {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    #search-button {
+        grid-column: span 2;
+    }
+}
+
+/* === Results Styles === */
+#results-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    #results-section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* === Map Styles === */
+#map-container {
+    height: 100%;
+    min-height: 400px;
+}
+
+#map {
+    width: 100%;
+    height: 350px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    background-color: #eee;
+}
+
+/* === Trials List Styles === */
+#trials-list {
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.loading, .error, .no-results {
+    padding: 2rem;
+    text-align: center;
+    color: var(--light-text);
+}
+
+.error {
+    color: var(--error-color);
+}
+
+.trials-list {
+    list-style: none;
+}
+
+.trial-item {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    transition: var(--transition);
+}
+
+.trial-item:hover {
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transform: translateY(-2px);
+}
+
+.trial-item h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.trial-item p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.view-details-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    margin-top: 0.8rem;
+}
+
+/* Loading Animation Styles - Add to your existing CSS */
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    color: var(--light-text);
+    text-align: center;
+}
+
+.loading:after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 6px solid var(--primary-color);
+    border-color: var(--primary-color) transparent var(--primary-color) transparent;
+    animation: loading 1.2s linear infinite;
+}
+
+@keyframes loading {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error and No Results States */
+.error {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--error-color);
+    background-color: rgba(255, 59, 48, 0.1);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+.no-results {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--light-text);
+    background-color: var(--light-background);
+    border-radius: var(--radius);
+    border: 1px dashed var(--border-color);
+}
+
+/* === Modal Styles === */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-button:hover {
+    color: var(--text-color);
+}
+
+.trial-detail-section {
+    margin-bottom: 2rem;
+}
+
+.trial-detail-section:last-child {
+    margin-bottom: 1rem;
+}
+
+.criteria-box {
+    background-color: var(--light-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-top: 0.5rem;
+}
+
+.locations-list, .contacts-list {
+    list-style: none;
+}
+
+.locations-list li, .contacts-list li {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.locations-list li:last-child, .contacts-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#generate-summary-button {
+    margin-top: 1.5rem;
+}
+
+/* === Summary Section Styles === */
+#summary-section {
+    background-color: #fff;
+}
+
+.summary-content {
+    background-color: var(--light-background);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    line-height: 1.7;
+    margin: 1rem 0;
+}
+
+.summary-note {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    font-style: italic;
+    text-align: right;
+}
+
+/* === Footer Styles === */
+footer {
+    background-color: var(--text-color);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* === Helper Classes === */
+.loading-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    color: var(--light-text);
+    text-align: center;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    section {
+        padding: 1.2rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+}
