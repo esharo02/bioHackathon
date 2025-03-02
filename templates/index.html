@@ -92,8 +92,34 @@
 </div>
 
 <footer>
-    <p>Data sourced from clinichealth.gov API. Summaries powered by OpenAI.</p>
+    <p>Data sourced from clinicaltrials.gov API. Summaries powered by OpenAI.</p>
     <p>This tool is for informational purposes only and does not constitute medical advice.</p>
 </footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+    // We need to load the Google Maps API with our API key from the server
+    // This approach prevents exposing the API key in client-side code
+    document.addEventListener('DOMContentLoaded', function() {
+        // Request the Google Maps API script with our key
+        fetch('/api/get_maps_api_key')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const script = document.createElement('script');
+                    script.src = `https://maps.googleapis.com/maps/api/js?key=${data.api_key}&callback=initMap`;
+                    script.async = true;
+                    script.defer = true;
+                    document.body.appendChild(script);
+                } else {
+                    console.error('Failed to get Maps API key:', data.error);
+                    initMapPlaceholder();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading Google Maps:', error);
+                initMapPlaceholder();
+            });
+    });
+</script>
 </body>
 </html>
